@@ -1,20 +1,9 @@
-### Emulating SPO256 al2 on RP2040 (Pico)
+### Emulating SPO256 al2 on RP2040 (Seeed Studio XIAO RP2040)
 From wav samples from the origional chip available at https://www.cpcwiki.eu/index.php/SP0256_Allophones
-Origional Chip data sheet in Additional folder
+Original Chip data sheet in Additional folder
+Original code adapted from https://github.com/ExtremeElectronics/SP0256-AL2-Pico-Emulation-Detail
+Adapted to run on Hackerbox 0098 (https://hackerboxes.com/collections/past-hackerboxes/products/hackerbox-0098-escape)
 
-## GPIO
-You need two pins on the same slice (currently 14/15) I invert one so you can put a small speaker directly across them.
-Much better quality can be gained by using an amplifier and a simple filter.
-
-## Sound Files
-All sound files are embedded in allophones.c as byte wide bitstreams. This make uploading them easy, plus as they are code, so they don't use any ram
-
-Adjusted lengths have been calculated as the origionals are (mostly) longer then they aught to be. 
-Actual lengths of the allophones are in allophonesize[]
-Adjusted play lengths are in allophonesizeCorrected[]
-
-## Enumeration
-allophoneDefs.h contains the allophone names from the data sheet as an innumeration to make making lists of allophones easier. 
-
-## Making speach
-Look through the origional data sheet. String together allophones. send them (with a length) to  PlayAllophones Simple.... ish :) 
+## Changes
+You must remove the solder A- Grounding Jumper.  The instructable was only using A+, this allophone uses A+ and A-.
+If you leave this solder grounding jumper, you won't hear any sound.
