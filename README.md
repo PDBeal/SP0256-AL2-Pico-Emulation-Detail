@@ -6,3 +6,7 @@
 ## Changes from instructable
 - You must remove the solder A- Grounding Jumper.  The instructable was only using A+, this allophone uses A+ and A-.
 - Note: If you leave this solder grounding jumper, you won't hear any sound.
+
+## Allophone Strings
+- Easy to generate from website and then import into code
+- https://greg-kennedy.com/sp0256-tts/
