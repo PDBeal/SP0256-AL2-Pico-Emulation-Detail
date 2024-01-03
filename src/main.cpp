@@ -52,10 +52,6 @@ void SetPWM(void)
   pwm_set_enabled(PWMslice, true);
 }
 
-void init() {}
-
-void initVariant() {}
-
 void setup()
 {
   // Setup PWM for allophone
@@ -82,14 +78,8 @@ void loop()
     neopixel.setPixelColor(0, 0, 25, 0);
     neopixel.show();
 
-    // uint8_t alist[] = {HH, EH, LL, AX, OW, PA5, WW, OR, LL, DD1};
-    // uint8_t alist[] ={AR,PA5,SS,SS,IY,PA5,TT2,WH,EH,EH,NN1,PA2,PA3,TT2,IY,PA5,FF,OR,PA3,TT2,IY,PA5};
-    //uint8_t alist[] = {HH, EH, LL, AX, OW, PA5,AX,EL,EH,PA2,KK1,SS,AE,NN1,PA2,DD1,RR2,IH,AX,PA3};
-    //uint8_t alist[] = {HH1, EH, LL, OW, PA3, AX, EL, EH, PA2, KK1, SS, AE, NN1, PA2, DD1, RR2, IH, AX, PA3}; // Hello Alexandria
-    //uint8_t alist[] = {HH1, EH, LL, OW, PA3, PA1, JH, EH, NN1, SS, AX, NN1, PA3};                            // Hello Jenson
-    uint8_t alist[] = {HH1, EH, LL, OW, PA3, AX, EL, EH, PA2, KK1, SS, AE, NN1, PA2, DD1, RR2, IH, AX, PA3, PA4, PA3, HH1, EH, LL, OW, PA3, PA1, JH, EH, NN1, SS, AX, NN1, PA3};
-
-    //[AL] + [IG] + [ZAAN] + [DREE] + [UH]
+    // The quick red fox jumped over the lazy brown dog
+    uint8_t alist[] = {DH1, AX, PA3, PA2, KK1, WW, IH, PA2, KK1, PA3, RR2, EH, PA2, DD1, PA3, FF, AA, PA2, KK1, SS, PA3, PA1, JH, UH, MM, PA3, PP, PA3, TT1, PA3, OW, VV, ER1, PA3, DH1, AX, PA3, LL, EY, ZZ, IY, PA3, PA1, BB1, RR2, OW, NN1, PA3, PA2, DD1, AA, PA1, GG1, PA3, PA5, PA3};
 
     PlayAllophones(alist, sizeof(alist));
   }
@@ -97,6 +87,7 @@ void loop()
   {
     neopixel.setPixelColor(0, 0, 255, 0);
     neopixel.show();
+    delay(100);
   }
 
 } // loop

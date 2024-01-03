@@ -55,9 +55,9 @@ void PlayAllophones(uint8_t *alist, int listlength);
 
 void SetPWM(void);
 
-void init();
+void init() {}
 
-void initVariant();
+void initVariant() {}
 
 void setup();
 
@@ -65,24 +65,24 @@ void loop();
 
 int main(void)
 {
-    init();
+  init();
 
-    initVariant();
+  initVariant();
 
 #if defined(USBCON)
-    USBDevice.attach();
+  USBDevice.attach();
 #endif
 
-    setup();
+  setup();
 
-    for (;;)
-    {
-        loop();
-        if (serialEventRun)
-            serialEventRun();
-    }
+  for (;;)
+  {
+    loop();
+    if (serialEventRun)
+      serialEventRun();
+  }
 
-    return 0;
+  return 0;
 } // main
 
 /**
