@@ -20,24 +20,30 @@
 #include "allophones.h"
 #include "allophoneDefs.h"
 
-// Define speaker pins (differential)
-#define SOUNDIO1 A3
-#define SOUNDIO2 A2
-
-// Define touch inputs
-#define TOUCHIO1 A0
-#define TOUCHIO2 A1
-
-// Define RGB pin
-#define NEOPIXELIO D7
-
 // How many NeoPixels are attached?
 #define LED_COUNT 1
 
 #define rate 90
 
+// const for Built-in LED
+const uint LED_PIN = LED_BUILTIN;
+
+// const for speaker pins (differential)
+const uint SOUNDIO1 = 29;
+const uint SOUNDIO2 = 28;
+
+// const for touch inputs
+const uint TOUCHIO1 = 26;
+const uint TOUCHIO2 = 27;
+
+// Define RGB pin
+const uint NEOPIXELIO = 1;
+const uint BUILTIN_NEOPIXEL_PWR = 11;
+const uint BUILTIN_NEOPIXEL = 12;
+
 // Declare our NeoPixel strip object:
 Adafruit_NeoPixel neopixel(LED_COUNT, NEOPIXELIO, NEO_RGB + NEO_KHZ800);
+Adafruit_NeoPixel mobo_neopixel(LED_COUNT, BUILTIN_NEOPIXEL, NEO_GRB + NEO_KHZ800);
 // Argument 1 = Number of pixels in NeoPixel strip
 // Argument 2 = Pin number (most are valid)
 // Argument 3 = Pixel type flags, add together as needed:
@@ -49,41 +55,15 @@ Adafruit_NeoPixel neopixel(LED_COUNT, NEOPIXELIO, NEO_RGB + NEO_KHZ800);
 
 uint PWMslice;
 
+void gpio_event_string(char *buf, uint32_t events);
+
+void gpio_callback(uint gpio, uint32_t events);
+
 void PlayAllophone(int al);
 
 void PlayAllophones(uint8_t *alist, int listlength);
 
 void SetPWM(void);
-
-void init() {}
-
-void initVariant() {}
-
-void setup();
-
-void loop();
-
-int main(void)
-{
-  init();
-
-  initVariant();
-
-#if defined(USBCON)
-  USBDevice.attach();
-#endif
-
-  setup();
-
-  for (;;)
-  {
-    loop();
-    if (serialEventRun)
-      serialEventRun();
-  }
-
-  return 0;
-} // main
 
 /**
 #include <Arduino.h>

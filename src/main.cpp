@@ -10,6 +10,81 @@
  */
 #include "main.h"
 
+void setup()
+{
+  gpio_init(LED_PIN);
+  gpio_set_dir(LED_PIN, GPIO_OUT);
+
+  // Setup PWM for allophone
+  SetPWM();
+
+  // Setup Touch inputs
+  gpio_init(TOUCHIO1);
+  gpio_set_dir(TOUCHIO1, GPIO_IN);
+  gpio_set_irq_enabled_with_callback(TOUCHIO1, GPIO_IRQ_EDGE_RISE | GPIO_IRQ_EDGE_FALL, true, &gpio_callback);
+
+  gpio_init(TOUCHIO2);
+  gpio_set_dir(TOUCHIO2, GPIO_IN);
+  gpio_set_irq_enabled_with_callback(TOUCHIO2, GPIO_IRQ_EDGE_RISE | GPIO_IRQ_EDGE_FALL, true, &gpio_callback);
+
+  // setup NeoPixel Output
+  gpio_init(BUILTIN_NEOPIXEL);
+  gpio_set_dir(BUILTIN_NEOPIXEL, GPIO_OUT);
+
+  gpio_init(NEOPIXELIO);
+  gpio_set_dir(NEOPIXELIO, GPIO_OUT);
+
+  gpio_init(BUILTIN_NEOPIXEL_PWR);
+  gpio_set_dir(BUILTIN_NEOPIXEL_PWR, GPIO_OUT);
+  gpio_put(BUILTIN_NEOPIXEL_PWR, HIGH);
+
+  mobo_neopixel.begin();
+  mobo_neopixel.clear();
+
+  neopixel.begin();
+  neopixel.clear(); // Initialize all pixels to 'off'
+} // setup
+
+void loop()
+{
+  mobo_neopixel.clear();
+  mobo_neopixel.setPixelColor(0, mobo_neopixel.Color(15, 25, 205));
+  sleep_ms(400);
+  mobo_neopixel.show();
+  mobo_neopixel.clear();
+  mobo_neopixel.setPixelColor(0, mobo_neopixel.Color(103, 25, 205));
+  sleep_ms(400);
+  mobo_neopixel.show();
+  mobo_neopixel.clear();
+  mobo_neopixel.setPixelColor(0, mobo_neopixel.Color(233, 242, 205));
+  sleep_ms(400);
+  mobo_neopixel.show();
+  mobo_neopixel.clear();
+  mobo_neopixel.setPixelColor(0, mobo_neopixel.Color(233, 23, 23));
+  sleep_ms(400);
+  mobo_neopixel.show();
+  mobo_neopixel.clear();
+  mobo_neopixel.setPixelColor(0, mobo_neopixel.Color(12, 66, 101));
+  sleep_ms(400);
+  mobo_neopixel.show();
+  sleep_ms(500);
+
+} // loop
+
+void gpio_callback(uint gpio, uint32_t events)
+{
+  neopixel.setPixelColor(0, neopixel.Color(0, 0, 25));
+  neopixel.show();
+
+  // The quick red fox jumped over the lazy brown dog
+  uint8_t alist[] = {DH1, AX, PA3, PA2, KK1, WW, IH, PA2, KK1, PA3, RR2, EH, PA2, DD1, PA3, FF, AA, PA2, KK1, SS, PA3, PA1, JH, UH, MM, PA3, PP, PA3, TT1, PA3, OW, VV, ER1, PA3, DH1, AX, PA3, LL, EY, ZZ, IY, PA3, PA1, BB1, RR2, OW, NN1, PA3, PA2, DD1, AA, PA1, GG1, PA3, PA5, PA3};
+
+  PlayAllophones(alist, sizeof(alist));
+
+  neopixel.setPixelColor(0, neopixel.Color(0, 0, 255));
+  neopixel.show();
+} // gpio_callback
+
 void PlayAllophone(int al)
 {
   int b, s;
@@ -21,7 +96,7 @@ void PlayAllophone(int al)
     sleep_us(rate);
     pwm_set_both_levels(PWMslice, v, ~v);
   }
-}
+} // PlayAllophone
 
 void PlayAllophones(uint8_t *alist, int listlength)
 {
@@ -30,7 +105,7 @@ void PlayAllophones(uint8_t *alist, int listlength)
   {
     PlayAllophone(alist[a]);
   }
-}
+} // PlayAllophones
 
 void SetPWM(void)
 {
@@ -50,44 +125,4 @@ void SetPWM(void)
 
   pwm_set_wrap(PWMslice, 256);
   pwm_set_enabled(PWMslice, true);
-}
-
-void setup()
-{
-  // Setup PWM for allophone
-  SetPWM();
-
-  // Setup Touch inputs
-  pinMode(TOUCHIO1, INPUT);
-  pinMode(TOUCHIO2, INPUT);
-
-  // setup NeoPixel Output
-  pinMode(NEOPIXELIO, OUTPUT);
-
-  neopixel.begin();
-  neopixel.clear(); // Initialize all pixels to 'off'
-}
-
-void loop()
-{
-  bool touch1 = digitalReadFast(TOUCHIO1);
-  bool touch2 = digitalReadFast(TOUCHIO2);
-
-  if (touch1 || touch2)
-  {
-    neopixel.setPixelColor(0, 0, 25, 0);
-    neopixel.show();
-
-    // The quick red fox jumped over the lazy brown dog
-    uint8_t alist[] = {DH1, AX, PA3, PA2, KK1, WW, IH, PA2, KK1, PA3, RR2, EH, PA2, DD1, PA3, FF, AA, PA2, KK1, SS, PA3, PA1, JH, UH, MM, PA3, PP, PA3, TT1, PA3, OW, VV, ER1, PA3, DH1, AX, PA3, LL, EY, ZZ, IY, PA3, PA1, BB1, RR2, OW, NN1, PA3, PA2, DD1, AA, PA1, GG1, PA3, PA5, PA3};
-
-    PlayAllophones(alist, sizeof(alist));
-  }
-  else
-  {
-    neopixel.setPixelColor(0, 0, 255, 0);
-    neopixel.show();
-    delay(100);
-  }
-
-} // loop
+} // SetPWM
