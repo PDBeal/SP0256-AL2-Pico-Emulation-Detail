@@ -26,7 +26,9 @@
 #define rate 90
 
 // const for Built-in LED
-const uint LED_PIN = LED_BUILTIN;
+const uint RED_LED = 17;
+const uint GREEN_LED = 16;
+const uint BLUE_LED = 25;
 
 // const for speaker pins (differential)
 const uint SOUNDIO1 = 29;

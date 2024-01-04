@@ -12,8 +12,12 @@
 
 void setup()
 {
-  gpio_init(LED_PIN);
-  gpio_set_dir(LED_PIN, GPIO_OUT);
+  gpio_init(RED_LED);
+  gpio_set_dir(RED_LED, GPIO_OUT);
+  gpio_init(GREEN_LED);
+  gpio_set_dir(GREEN_LED, GPIO_OUT);
+  gpio_init(BLUE_LED);
+  gpio_set_dir(BLUE_LED, GPIO_OUT);
 
   // Setup PWM for allophone
   SetPWM();
