@@ -1,11 +1,13 @@
 //pico SDK includes
 //#include <Arduino.h>
 #include <stdio.h>
+#include <cstdint>
 #include "pins_arduino.h"
 #include "pico/stdlib.h"
 #include "pico/multicore.h"
 #include "hardware/pwm.h"
-#include <Adafruit_NeoPixel.h>
+
+//#include <Adafruit_NeoPixel.h>
 
 //program includes
 #include "allophoneDefs.h"
@@ -26,7 +28,7 @@
 // and which pin to use to send signals. Note that for older NeoPixel
 // strips you might need to change the third parameter -- see the
 // strandtest example for more information on possible values.
-Adafruit_NeoPixel neopixel(1, neopixelIO1, NEO_GRB + NEO_KHZ800);
+//Adafruit_NeoPixel neopixel(1, neopixelIO1, NEO_GRB + NEO_KHZ800);
 
 #define DELAYVAL 10 // Time (in milliseconds) to pause between pixels
 

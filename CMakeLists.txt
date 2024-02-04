@@ -24,7 +24,6 @@ pico_sdk_init()
 #target_include_directories(${PROJECT_NAME} INTERFACE ${CMAKE_CURRENT_LIST_DIR}/include)
 include_directories(${CMAKE_CURRENT_LIST_DIR}
     ./include
-    ./library/Adafruit_NeoPixel
 )
 
 # Tell CMake where to find the executable source file

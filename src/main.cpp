@@ -47,7 +47,7 @@ void init() {
 
 void setup() {
   // put your setup code here, to run once:
-  neopixel.begin();
+  //neopixel.begin();
   
   gpio_set_dir(touchIO1, GPIO_IN);
   gpio_set_dir(touchIO2, GPIO_IN);
@@ -70,17 +70,17 @@ void core1_entry() {
 }
 
 void core1_loop() {
-  neopixel.clear(); // set all pixel colors to 'off'
+  //neopixel.clear(); // set all pixel colors to 'off'
 
-  for (int red=0; red<255; red++) {
-    for (int blue=0; blue<255; blue++) {
-      for (int green=0; green<255; green++) {
-        neopixel.setPixelColor(0, neopixel.Color(green, red, blue));
-        neopixel.show();   // Send the updated pixel colors to the hardware.
-        sleep_ms(DELAYVAL); // Pause before next pass through loop
-      }
-    }
-  }
+  //for (int red=0; red<255; red++) {
+    //for (int blue=0; blue<255; blue++) {
+      //for (int green=0; green<255; green++) {
+        //neopixel.setPixelColor(0, neopixel.Color(green, red, blue));
+        //neopixel.show();   // Send the updated pixel colors to the hardware.
+        //sleep_ms(DELAYVAL); // Pause before next pass through loop
+      //}
+    //}
+  //}
 }
 
 void loop() {
@@ -88,8 +88,8 @@ void loop() {
   touchValue = gpio_get(touchIO1) || gpio_get(touchIO2);
 
   if (touchValue) { 
-    neopixel.setPixelColor(0, neopixel.Color(0, 25, 0));
-    neopixel.show();   // Send the updated pixel colors to the hardware.
+    //neopixel.setPixelColor(0, neopixel.Color(0, 25, 0));
+    //neopixel.show();   // Send the updated pixel colors to the hardware.
     
     //uint8_t alist[] ={HH,EH,LL,AX,OW,PA5,WW,OR,LL,DD1};
     //uint8_t alist[] ={AR,PA5,SS,SS,IY,PA5,TT2,WH,EH,EH,NN1,PA2,PA3,TT2,IY,PA5,FF,OR,PA3,TT2,IY,PA5};
