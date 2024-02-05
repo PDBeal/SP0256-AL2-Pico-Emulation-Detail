@@ -1,14 +1,9 @@
 #pragma once
 
-//#include"stdio.h"
-//#include <stdlib.h>
 #include "pico/stdlib.h"
 #include <cstdlib>
 #include <string.h>
 #include "hardware/pio.h"
-//#include "hardware/dma.h"
-//#include "hardware/clocks.h"
-//#include "hardware/gpio.h"
 
 #include "ws2812.pio.h"
 
@@ -103,7 +98,5 @@ private:
     uint pixelOffset;
 
     void alloc(uint16_t n);
-
-    void setPixel(uint32_t color);
 
 };
