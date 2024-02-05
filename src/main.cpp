@@ -70,17 +70,41 @@ void core1_entry() {
 }
 
 void core1_loop() {
-  //neopixel.clear(); // set all pixel colors to 'off'
+  neopixel.clear(); // set all pixel colors to 'off'
 
   //for (int red=0; red<255; red++) {
-    //for (int blue=0; blue<255; blue++) {
-      //for (int green=0; green<255; green++) {
-        //neopixel.setPixelColor(0, neopixel.Color(green, red, blue));
-        //neopixel.show();   // Send the updated pixel colors to the hardware.
-        //sleep_ms(DELAYVAL); // Pause before next pass through loop
-      //}
-    //}
+  //  for (int blue=0; blue<255; blue++) {
+  //    for (int green=0; green<255; green++) {
+  //      neopixel.setPixelColor(0, neopixel.color(green, red, blue));
+  //      neopixel.show();   // Send the updated pixel colors to the hardware.
+  //      sleep_ms(DELAYVAL); // Pause before next pass through loop
+  //    }
+  //  }
   //}
+  neopixel.setPixelColor(0, neopixel.color(255, 0, 0));
+  neopixel.show();   // Send the updated pixel colors to the hardware.
+  sleep_ms(DELAYVAL); // Pause before next pass through loop
+
+  //neopixel.setPixelColor(0, neopixel.color(255, 255, 0));
+  //neopixel.show();   // Send the updated pixel colors to the hardware.
+  //sleep_ms(DELAYVAL); // Pause before next pass through loop
+
+  neopixel.setPixelColor(0, neopixel.color(0, 255, 0));
+  neopixel.show();   // Send the updated pixel colors to the hardware.
+  sleep_ms(DELAYVAL); // Pause before next pass through loop
+
+  //neopixel.setPixelColor(0, neopixel.color(0, 255, 255));
+  //neopixel.show();   // Send the updated pixel colors to the hardware.
+  //sleep_ms(DELAYVAL); // Pause before next pass through loop
+
+  neopixel.setPixelColor(0, neopixel.color(0, 0, 255));
+  neopixel.show();   // Send the updated pixel colors to the hardware.
+  sleep_ms(DELAYVAL); // Pause before next pass through loop
+
+  //neopixel.setPixelColor(0, neopixel.color(255, 0, 255));
+  //neopixel.show();   // Send the updated pixel colors to the hardware.
+  //sleep_ms(DELAYVAL); // Pause before next pass through loop
+
 }
 
 void loop() {
