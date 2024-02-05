@@ -46,7 +46,6 @@ void init() {
 }
 
 void setup() {
-  // put your setup code here, to run once:
   neopixel.begin();
   
   gpio_set_dir(touchIO1, GPIO_IN);
@@ -65,8 +64,9 @@ void core1_entry() {
     else
         printf("Its all gone well on core 1!\n");
  
-    while (1)
+    for (;;) {
         core1_loop();
+    }
 }
 
 void core1_loop() {
@@ -132,9 +132,6 @@ void loop() {
     }
     neopixel.show();   // Send the updated pixel colors to the hardware.
     
-    //uint8_t alist[] ={HH,EH,LL,AX,OW,PA5,WW,OR,LL,DD1};
-    //uint8_t alist[] ={AR,PA5,SS,SS,IY,PA5,TT2,WH,EH,EH,NN1,PA2,PA3,TT2,IY,PA5,FF,OR,PA3,TT2,IY,PA5};
-    //uint8_t alist[] ={HH,EH,LL,AX,OW,PA5,PA5,JH,EH,NN2,SS,NN};
     uint8_t alist[] ={HH,EH,LL,AX,OW};
 
     PlayAllophones(alist,sizeof(alist));
@@ -143,7 +140,6 @@ void loop() {
     neopixel.show();
   }
 
-  //Serial.println("Touch Input = " && touchValue);
 }
 
 int main(void) {
