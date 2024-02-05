@@ -1,8 +1,8 @@
 {
-    "cmake.environment": {
-        "PICO_SDK_PATH": "${env:HOME}/pico/pico-sdk/",
-        "PICO_EXTRAS_PATH": "${env:HOME}/pico/pico-extras",
-        "PICO_PLAYGROUND_PATH": "${env:HOME}/pico/pico-playground",
-        "PICO_EXAMPLES_PATH": "${env:HOME}/pico/pico-examples"
-    }
+    //"cmake.environment": {
+    //    "PICO_SDK_PATH": "${env:HOME}/pico/pico-sdk/",
+    //    "PICO_EXTRAS_PATH": "${env:HOME}/pico/pico-extras",
+    //    "PICO_PLAYGROUND_PATH": "${env:HOME}/pico/pico-playground",
+    //    "PICO_EXAMPLES_PATH": "${env:HOME}/pico/pico-examples"
+    //}
 }
