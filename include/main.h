@@ -24,7 +24,7 @@
 // and which pin to use to send signals.
 WS2812 neopixel(1, neopixelIO1);
 
-#define DELAYVAL 5000 // Time (in milliseconds) to pause between pixels
+#define DELAYVAL 10000 // Time (in milliseconds) to pause between pixels
 
 #define FLAG_VALUE 123
 

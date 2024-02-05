@@ -1,14 +1,18 @@
 #pragma once
+/*!
+ * \file ws2812.h
+ */
 
+#include "hardware/pio.h"
 #include "pico/stdlib.h"
 #include <cstdlib>
 #include <string.h>
-#include "hardware/pio.h"
 
 #include "ws2812.pio.h"
 
 class WS2812
 {
+
 public:
     /*!
      * \brief Constructor
@@ -38,7 +42,12 @@ public:
     /*!
      * \brief Initialize the class instance after calling constructor
      */
-    void begin();
+    void begin(void);
+
+    /*!
+     * \brief Display all the pixels in the buffer
+     */
+    void show(void);
 
     /*!
      * \brief Set a NeoPixel to a given color.
@@ -73,12 +82,35 @@ public:
     void fillPixelColor(uint8_t red, uint8_t green, uint8_t blue);
 
     /*!
-     * \brief Display all the pixels in the buffer
+     * \brief Create a 32 bit value combining the 3 colors
+     *
+     * \param red: red value (0-255)
+     * \param green: green value(0-255)
+     * \param blue: blue value (0-255)
      */
-    void show(void);
-
-    // create a 32 bit value combining the 3 colors
     uint32_t color(uint8_t red, uint8_t green, uint8_t blue);
+
+    /*!
+     * \brief Change strand length
+     *
+     * \param numLEDs Length to change to
+     */
+    void updateLength(uint16_t num);
+    
+    /*!
+     * \brief Returns the number of pixels currently connected
+     *
+     * \return Returns the number of connected pixels
+     */
+    uint16_t numPixels(void);
+    
+    /*!
+     * \brief Query color from previously-set pixel
+     *
+     * \param led Pixel to query
+     * \return Returns packed 32-bit RGB value
+     */
+    uint32_t getPixelColor(uint16_t led);
 
 private:
     uint16_t numLEDs; // number of pixels

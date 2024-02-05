@@ -111,8 +111,25 @@ void loop() {
   // put your main code here, to run repeatedly:
   touchValue = gpio_get(touchIO1) || gpio_get(touchIO2);
 
-  if (touchValue) { 
-    neopixel.setPixelColor(0, neopixel.color(0, 25, 0));
+  if (touchValue) 
+  { 
+    uint32_t currentColor = neopixel.getPixelColor(0);
+    if (currentColor == neopixel.color(255,0,0))
+    {
+      neopixel.setPixelColor(0, neopixel.color(25, 0, 0));
+    }
+    else if (currentColor == neopixel.color(0,255,0))
+    {
+      neopixel.setPixelColor(0, neopixel.color(0, 25, 0));
+    }
+    else if (currentColor == neopixel.color(0,0,255))
+    {
+      neopixel.setPixelColor(0, neopixel.color(0, 0, 25));
+    } 
+    else
+    {
+      neopixel.setPixelColor(0, neopixel.color(25, 25, 25));
+    }
     neopixel.show();   // Send the updated pixel colors to the hardware.
     
     //uint8_t alist[] ={HH,EH,LL,AX,OW,PA5,WW,OR,LL,DD1};
@@ -122,6 +139,8 @@ void loop() {
 
     PlayAllophones(alist,sizeof(alist));
 
+    neopixel.setPixelColor(0, currentColor);
+    neopixel.show();
   }
 
   //Serial.println("Touch Input = " && touchValue);

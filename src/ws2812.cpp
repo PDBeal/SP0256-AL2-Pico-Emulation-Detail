@@ -1,3 +1,18 @@
+/*!
+ * \file ws2812.cpp
+ *
+ * \mainpage WS2812 Library
+ *
+ * \section intro_sec Introduction
+ *
+ * Example to control WS2812-based RGB LED Modules in a strand or strip with RP2040 SDK only
+ *
+ * \section author Author
+ *
+ * Written by PBeal
+ * \section license License
+ * MIT license
+ */
 #include "ws2812.h"
 
 WS2812::WS2812(uint16_t num, uint8_t pin, PIO pio, int sm) {
@@ -76,8 +91,8 @@ void WS2812::clear()
     }
 }
 
+// Update the WS2812 pixels
 void WS2812::show(void) {
-    // show the neopixels in the buffer
     for (uint16_t i = 0; i < numLEDs; i++) 
     {
         uint8_t redPtr = this->pixels[i*3];
@@ -103,4 +118,29 @@ void WS2812::fillPixelColor(uint8_t red, uint8_t green, uint8_t blue)
         *p++ = green;
         *p++ = blue;
     }
+}
+
+void WS2812::updateLength(uint16_t num)
+{
+    if (pixels != NULL)
+        free(pixels); // Free existing data (if any)
+    // Allocate new data -- note: ALL PIXELS ARE CLEARED
+    numLEDs = ((pixels = (uint8_t *)calloc(num, 3)) != NULL) ? num : 0;
+}
+
+uint16_t WS2812::numPixels(void) { return numLEDs; }
+
+uint32_t WS2812::getPixelColor(uint16_t led)
+{
+    if (led < numLEDs)
+    {
+        uint16_t ofs = led * 3;
+        // To keep the show() loop as simple & fast as possible, the
+        // internal color representation is native to different pixel
+        // types.  For compatibility with existing code, 'packed' RGB
+        // values passed in or out are always 0xRRGGBB order.
+        return ((uint32_t)pixels[ofs] << 16) | ((uint16_t)pixels[ofs + 1] << 8) | ((uint16_t)pixels[ofs + 2]);
+    }
+
+    return 0; // Pixel # is out of bounds
 }
